@@ -1,3 +1,4 @@
+<!-- filepath: /home/muma/Desktop/Laravel/tasks-management/resources/views/admin/layouts/admin.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,31 +19,31 @@
         }
 
         .bg-sidebar {
-            background: #ffa500;
+            background: #1a202c;
         }
 
         .cta-btn {
-            color: #ffa500;
+            color: #1a202c;
         }
 
         .upgrade-btn {
-            background: #ff9000;
+            background: #4a5568;
         }
 
         .upgrade-btn:hover {
-            background: #ff9000;
+            background: #2d3748;
         }
 
         .active-nav-link {
-            background: #ff9000;
+            background: #2d3748;
         }
 
         .nav-item:hover {
-            background: #ff9000;
+            background: #2d3748;
         }
 
         .account-link:hover {
-            background: #ffa500;
+            background: #1a202c;
         }
     </style>
     <style>
@@ -56,121 +57,55 @@
     @livewireStyles
 </head>
 
-<body class="bg-gray-200 font-family-karla flex">
+<body class="bg-gray-100 font-family-karla flex flex-col min-h-screen">
 
-    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
-        <div class="p-4">
-            <a href="{{ route('admin.index') }}"
-                class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
-
-                @can('admin-only')
-                    Admin
-                @else
-                    Employee
-                @endcan
-
-            </a>
-            {{-- <button onclick="location.href='{{ route('admin.post.create') }}';"
-                class="w-full bg-white cta-btn font-semibold py-2 mt-1 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Post
-            </button> --}}
-        </div>
-        <nav class="text-white text-base font-semibold">
-            <a href="{{ route('admin.index') }}"
-                class="{{ request()->routeIs('admin.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-tachometer-alt mr-3"></i>
-                Dashboard
-            </a>
-            @can('admin-only')
-                <a href="{{ route('admin.users.index') }}"
-                    class="{{ request()->routeIs('admin.users.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-user mr-3"></i>
-                    User
+    <!-- Top Navigation Bar -->
+    <header class="bg-sidebar text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <div class="flex items-center">
+                <a href="{{ route('admin.index') }}" class="text-3xl font-semibold uppercase hover:text-gray-300">
+                    @can('admin-only')
+                        Admin
+                    @else
+                        Employee
+                    @endcan
                 </a>
-                <a href="{{ route('admin.categories.index') }}"
-                    class="{{ request()->routeIs('admin.categories.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-code-branch mr-3"></i>
-                    Categories
-                </a>
-                <a href="{{ route('admin.tasks.index') }}"
-                    class="{{ request()->routeIs('admin.tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-list mr-3"></i>
-                    Tasks
-                </a>
-            @endcan
-            <a href="{{ route('admin.auth_tasks.index') }}"
-                class="{{ request()->routeIs('admin.auth_tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} flex items-center text-white py-4 pl-6 nav-item">
-                <i class="fas fa-tasks mr-3"></i>
-                My Assigned Tasks
-            </a>
-
-
-        </nav>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button
-                class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
-                <i class="fas fa-arrow-circle-left mr-3"></i>
-                Sign Out
-            </button>
-        </form>
-    </aside>
-
-    <div class="w-full flex flex-col h-screen overflow-y-hidden">
-
-        <!-- Desktop Header -->
-        <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
-            <div class="w-full text-lg">Tasks Management</div>
-            <div class="w-1/2"></div>
-            <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
-                <button @click="isOpen = !isOpen"
-                    class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                    <img src="{{ asset('import/assets/profile-pic-dummy.png') }}">
-                </button>
-                <button x-show="isOpen" @click="isOpen = false"
-                    class="h-full w-full fixed inset-0 cursor-default"></button>
-                <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="mailto:gachettela2@gmail.com" class="block px-4 py-2 account-link hover:text-white">Support</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="block px-4 py-2 account-link hover:text-white w-full text-left">Sign Out</button>
-                    </form>
-                </div>
             </div>
-        </header>
-
-        <!-- Mobile Header & Nav -->
-        <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-                <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
-                    <i x-show="!isOpen" class="fas fa-bars"></i>
-                    <i x-show="isOpen" class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <!-- Dropdown Nav -->
-            <nav :class="isOpen ? 'flex' : 'hidden'" class="flex flex-col pt-4">
-                <a href="index.html" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
+            <nav class="flex space-x-4">
+                <a href="{{ route('admin.index') }}"
+                    class="{{ request()->routeIs('admin.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} py-2 px-4 nav-item">
                     Dashboard
                 </a>
-
-
-                <form method="POST" action="{{ route('logout') }}">
+                @can('admin-only')
+                    <a href="{{ route('admin.users.index') }}"
+                        class="{{ request()->routeIs('admin.users.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} py-2 px-4 nav-item">
+                        Users
+                    </a>
+                    <a href="{{ route('admin.categories.index') }}"
+                        class="{{ request()->routeIs('admin.categories.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} py-2 px-4 nav-item">
+                        Categories
+                    </a>
+                    <a href="{{ route('admin.tasks.index') }}"
+                        class="{{ request()->routeIs('admin.tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} py-2 px-4 nav-item">
+                        Tasks
+                    </a>
+                @endcan
+                <a href="{{ route('admin.auth_tasks.index') }}"
+                    class="{{ request()->routeIs('admin.auth_tasks.index') ? 'active-nav-link' : 'opacity-85 hover:opacity-100' }} py-2 px-4 nav-item">
+                    My Assigned Tasks
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
-                    <button
-                        class="flex items-center text-white opacity-85 hover:opacity-100 py-2 pl-4 nav-item w-full text-left">
-                        <i class="fas fa-sign-out-alt mr-3"></i>
+                    <button class="py-2 px-4 nav-item">
                         Sign Out
                     </button>
                 </form>
-
             </nav>
+        </div>
+    </header>
 
-        </header>
-
+    <!-- Main Content -->
+    <div class="flex-grow container mx-auto p-6">
         @if ($errors->any())
             <div role="alert">
                 <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 mx-4">
@@ -185,15 +120,10 @@
                 </div>
             </div>
         @endif
-        {{-- @yield('content') --}}
-        {{ $slot }}
 
-        <footer class="w-full bg-white text-right p-4">
-            ControlPanel by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a> |
-            Developed by <a target="_blank" href="https://linkedin.com/in/elgammal" class="underline">La_Gachette</a>.
-        </footer>
-    </div>
-
+        <main class="w-full flex-grow p-6">
+            {{ $slot }}
+        </main>
     </div>
 
     <!-- AlpineJS -->
