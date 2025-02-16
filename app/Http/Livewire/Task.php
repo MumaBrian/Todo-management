@@ -18,7 +18,7 @@ class Task extends Component
     public $category_id;
 
     protected $rules = [
-        'title' => 'required|min:6|max:255',
+        'title' => 'required|min:6|max:50',
         'description' => 'required|min:6|max:500',
         'due_date' => 'required|date|date_format:Y-m-d|after_or_equal:today',
         'category_id' => 'required|exists:categories,id',
@@ -42,6 +42,8 @@ class Task extends Component
         $this->reset();
 
         session()->flash('message', 'Task Created');
+
+        $this->emit('taskAssigned'); // Emit an event when a task is added
     }
 
     public function render()

@@ -72,7 +72,7 @@
         <p class="text-xl pb-3 flex items-center">
             Tasks
         </p>
-        <div class="bg-white overflow-auto">
+        <div class="bg-white overflow-auto" wire:poll.5s>
             <table class="text-left w-full border-collapse">
                 <thead>
                     <tr>
@@ -94,10 +94,10 @@
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Completed at</th>
-                        {{-- <th
+                        <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Manage
-                        </th> --}}
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

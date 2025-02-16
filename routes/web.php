@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\AssignedTasks;
+use App\Http\Livewire\ShowSingleAssignedTask;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,12 +26,11 @@ Route::middleware(['auth', 'can:admin-login'])->name('admin.')->prefix('/admin')
         Route::resource('users', UserController::class);
     });
 
-    Route::get('/assigned-tasks', [TaskController::class, 'showAuthAssignedTasks'])->name('auth_tasks.index');
-    Route::get('/show-single-assigned-task/{id}', [TaskController::class, 'showSingleAssignedTask'])->name('single_assign_task.show');
+   
+    Route::get('/assigned-tasks', AssignedTasks::class)->name('auth_tasks.index');
+    Route::get('/show-single-assigned-task/{id}', ShowSingleAssignedTask::class)->name('single_assign_task.show');
     Route::post('/complete-task/{id}', [TaskController::class, 'taskCompleteButton'])->name('complete_task.store');
-
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
