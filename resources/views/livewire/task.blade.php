@@ -6,8 +6,7 @@
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task
-                            title</label>
+                        <label for="title" class="block mb-2 text-sm  text-black font-bold">Task Title</label>
                         <input type="text" id="title" value="{{ old('title') }}"
                             class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm"
                             placeholder="ex: Write Article" required name="title" wire:model="title">
@@ -16,8 +15,7 @@
                         @enderror
                     </div>
                     <div class="mb-1">
-                        <label for="due_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due
-                            Date</label>
+                        <label for="due_date" class="block mb-2 text-sm text-black font-bold">Due Date</label>
                         <input type="date" id="due_date" value="{{ old('due_date') }}"
                             class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm"
                             required name="due_date" wire:model="due_date">
@@ -26,8 +24,7 @@
                         @enderror
                     </div>
                     <div class="mb-1">
-                        <label for="chooseCategory"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose Category</label>
+                        <label for="chooseCategory" class="block mb-2 text-sm  text-black font-bold">Choose Category</label>
                         <select
                             class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm"
                             id="chooseCategory" name="category_id" wire:model="category_id" required>
@@ -41,8 +38,7 @@
                         @enderror
                     </div>
                     <div class="mb-1">
-                        <label for="assignedUser"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assign to user</label>
+                        <label for="assignedUser" class="block mb-2 text-sm  text-black font-bold">Assign to User</label>
                         <select
                             class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm"
                             id="assignedUser" name="assigned_to_user_id" wire:model="assigned_to_user_id" required>
@@ -55,12 +51,25 @@
                             <div class="bg-yellow-300 text-red-700">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="mb-1">
+                        <label for="priority" class="block mb-2 text-sm  text-black font-bold">Priority</label>
+                        <select
+                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm"
+                            id="priority" name="priority" wire:model="priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                        @error('priority')
+                            <div class="bg-yellow-300 text-red-700">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="mb-2">
-                    <label class="block text-sm font-medium text-gray-900 dark:text-white" for="description">Description</label>
+                    <label class="block text-sm  text-black font-bold" for="description">Description</label>
                     <textarea
                         class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-sm"
-                        id="message" name="description" wire:model="description" required>{{ old('description') }}</textarea>
+                        id="description" name="description" wire:model="description" required>{{ old('description') }}</textarea>
                 </div>
                 <div class="flex justify-end">
                     <button class="px-4 py-1 text-white font-light tracking-wider bg-blue-600 rounded">Add</button>
@@ -93,6 +102,9 @@
                             Assignee</th>
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                            Priority</th>
+                        <th
+                            class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                             Completed at</th>
                         <th
                             class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
@@ -110,6 +122,7 @@
                         <td
                         class="py-4 px-6 border-b border-grey-light {{ $task->assignedUser->name ?? 'text-red-700' }}">
                         {{ $task->assignedUser->name ?? 'Not Assigned' }}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $task->priority }}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $task->completed_at ?? "Not Completed" }}</td>
 
                         <td class="py-4 px-6 border-b border-grey-light flex gap-2">
