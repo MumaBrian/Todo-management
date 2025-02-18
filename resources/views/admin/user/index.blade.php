@@ -8,7 +8,7 @@
 
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Users Records
+                    Users Records
                 </p>
                 <button class="px-4 py-1 text-white font-light tracking-wider bg-blue-600 rounded mb-2"
                 onclick="location.href='{{ route('admin.users.create') }}';">Add User</button>

@@ -2,52 +2,46 @@
 
     <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
-            <h1 class="w-full text-3xl text-black pb-6">Show Task</h1>
+            <h1 class="w-full text-3xl text-black font-bold pb-6">Show Task</h1>
 
             <div class="w-full mt-4">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Task Details
+                <p class="text-3xl pb-3 font-bold flex items-center">
+                    Task Details
                 </p>
 
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div class="mb-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task
-                            title</label>
-                        {{ $task->title }}
+                        <label for="name" class="block mb-2 text-sm font-medium text-black font-bold">Title</label>
+                        <span class="text-gray-500">{{ $task->title }}</span>
                     </div>
                     <div class="mb-1">
-                        <label for="due_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due
-                            Date</label>
-                        {{ $task->due_date }}
+                        <label for="due_date" class="block mb-2 text-sm font-medium text-black font-bold">Due Date</label>
+                        <span class="text-gray-500">{{ $task->due_date }}</span>
                     </div>
                     <div class="mb-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Is Completed</label>
-                        {{ $task->completed ? "Yes" : "No" }}
+                        <label for="name" class="block mb-2 text-sm font-medium text-black font-bold">Is Completed</label>
+                        <span class="text-gray-500">{{ $task->completed ? "Yes" : "No" }}</span>
                     </div>
                     <div class="mb-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Completed Date</label>
-                        {{ $task->completed_at ?? "None" }}
+                        <label for="name" class="block mb-2 text-sm font-medium text-black font-bold">Completed Date</label>
+                        <span class="text-gray-500">{{ $task->completed_at ?? "None" }}</span>
                     </div>
                     <div class="mb-1">
-                        <label for="Category"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        {{ $task->category->name }}
+                        <label for="Category" class="block mb-2 text-sm font-medium text-black font-bold">Category</label>
+                        <span class="text-gray-500">{{ $task->category->name }}</span>
                     </div>
                     <div class="mb-1">
-                        <label for="assignedUser"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assigne to</label>
-                        {{ $task->user->name }}
+                        <label for="assignedUser" class="block mb-2 text-sm font-medium text-black font-bold">Assigned to</label>
+                        <span class="text-gray-500">{{ $task->user->name }}</span>
                     </div>
                     <div class="mb-1">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Created By</label>
-                        {{ $task->user->name }}
+                        <label for="name" class="block mb-2 text-sm font-medium text-black font-bold">Created By</label>
+                        <span class="text-gray-500">{{ $task->user->name }}</span>
                     </div>
-                    {{--  --}}
                 </div>
                 <div class="mb-2">
-                    <label class="block text-sm text-gray-600" for="description">Description</label>
-                    {{ $task->description }}
+                    <label class="block text-sm font-medium text-black font-bold" for="description">Description</label>
+                    <span class="text-gray-500">{{ $task->description }}</span>
                 </div>
 
                 @if (!$task->completed)

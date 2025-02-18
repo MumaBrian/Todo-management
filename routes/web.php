@@ -26,7 +26,7 @@ Route::middleware(['auth', 'can:admin-login'])->name('admin.')->prefix('/admin')
         Route::resource('users', UserController::class);
     });
 
-   
+
     Route::get('/assigned-tasks', AssignedTasks::class)->name('auth_tasks.index');
     Route::get('/show-single-assigned-task/{id}', ShowSingleAssignedTask::class)->name('single_assign_task.show');
     Route::post('/complete-task/{id}', [TaskController::class, 'taskCompleteButton'])->name('complete_task.store');

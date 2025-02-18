@@ -8,7 +8,7 @@
 
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> My Assigned Tasks Records
+                    My Assigned Tasks Records
                 </p>
                 <div class="bg-white overflow-auto">
                     <table class="text-left w-full border-collapse">
@@ -29,6 +29,10 @@
                                 <th
                                     class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                                     Created By</th>
+                                <th
+                                    class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                    Manage
+                                </th>
                                 
                             </tr>
                         </thead>
