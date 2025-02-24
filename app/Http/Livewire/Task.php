@@ -16,6 +16,7 @@ class Task extends Component
     public $due_date;
     public $assigned_to_user_id;
     public $category_id;
+    public $priority = 'medium';
 
     protected $rules = [
         'title' => 'required|min:6|max:50',
@@ -23,6 +24,7 @@ class Task extends Component
         'due_date' => 'required|date|date_format:Y-m-d|after_or_equal:today',
         'category_id' => 'required|exists:categories,id',
         'assigned_to_user_id' => 'nullable|exists:users,id',
+        'priority' => 'required|in:low,medium,high',
     ];
 
     public function store()
@@ -36,6 +38,7 @@ class Task extends Component
             'assigned_to_user_id' => $this->assigned_to_user_id,
             'assigned_date' => now()->toDateString(),
             'category_id' => $this->category_id,
+            'priority' => $this->priority,
             'user_id' => auth()->id()
         ]);
 
@@ -43,7 +46,7 @@ class Task extends Component
 
         session()->flash('message', 'Task Created');
 
-        $this->emit('taskAssigned'); // Emit an event when a task is added
+        $this->emit('taskAssigned');
     }
 
     public function render()
@@ -51,7 +54,7 @@ class Task extends Component
         return view(
             'livewire.task',
             [
-                'tasks' => TaskModel::with('user', 'assignedUser')->paginate(15),
+                'tasks' => TaskModel::with('user', 'assignedUser')->latest()->paginate(5),
                 'users' => User::select('id', 'name')->get(),
                 'categories' => CategoryModel::select('id', 'name')->get()
             ]
